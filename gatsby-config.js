@@ -5,7 +5,7 @@ module.exports = {
     siteUrl: `https://novela.narative.co`,
     description: `Dicas úteis de programação em Node, React e React Native. Quase tudo sobre o ecossistema JavaScript.`,
     hero: {
-      heading: `Undefined - Artigos Sobre Programação`,
+      heading: `Undefined - Frontend && Backend`,
       maxWidth: 652,
     },
     social: [
