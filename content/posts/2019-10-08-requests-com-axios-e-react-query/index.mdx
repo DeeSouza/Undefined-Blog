@@ -1,0 +1,117 @@
+---
+title: 👨‍💻 Requests com Axios e React Query
+author: Diego Souza
+date: 2019-10-08
+hero: ./images/hero.jpg
+excerpt: Ao fazer uma request sempre pensamos o que usar e como tratar as requisições. Veja como essas duas bibliotecas podem te ajudar.
+---
+
+Meu primeiro artigo no blog é para falar sobre requisições. Qual biblioteca usar para fazer requisições? Como tratar isso no momento da renderização?
+
+## AXIOS 😎
+
+Essa biblioteca é utilizada para trabalhar com API REST. Fazer requisições numa API, com **GET**, **POST**, **DELETE**, **PUT** e **PATCH**.  
+Você pode fazer a instalação dela no seu projeto dessa forma:
+
+```shell
+yarn add axios
+# or
+npm install axios 
+# or
+bower install axios
+```
+
+### CONFIGURANDO UMA URL BASE
+
+Para usar o **axios** e usar uma URL como base podemos criar um arquivo chamado `api.js` dentro de uma pasta chamada `services` na pasta `src` do projeto.
+
+```javascript
+import axios from 'axios';
+
+const api = axios.create({
+    baseURL: 'https://api.github.com/',
+    timeout: 1000,
+    headers: {
+      /** 
+       * Coloque aqui os headers que precisar.
+       * Assim eles sempre serão incluídos na requisição.
+       */
+    }
+})
+```
+
+Dessa forma, todas as chamadas que você fizer, essa URL será incluída. Assim não é necessário incluí-la na requisição. Por exemplo:
+
+```javascript
+import api from '../services/api';
+
+const [data, setData] = useState([]);
+
+useEffect(() => {
+  const getUsersGitHub = async () => {
+    const result = await api.get('users');
+    
+    setData(result.data);
+  };
+
+  getUsersGitHub();
+}, []);
+
+```
+
+## REACT QUERY 😍
+
+Mas agora que temos a resposta do servidor, queremos tratar isso no momento da renderização, talvez colocando um *loading* ou um *spinner* para mostrar 
+ao usuário que alguma coisa está acontecendo, que algo está carregando.
+
+Essa biblioteca usa o **hooks** do **React** e pode nos ajudar a fazer esse tratamento de forma bem simples na função de renderização.
+
+```shell
+yarn add react-query
+# or
+npm i --save react-query
+```
+
+Vamos aproveitar o código acima para adicionar esse recurso.
+
+```javascript
+import api from '../services/api';
+import { useQuery } from 'react-query';
+
+useEffect(() => {
+  const getUsersGitHub = async () => {
+    const { data: result, loading, error } = useQuery('users', 
+      () => await api.get('users');
+    );
+  };
+
+  getUsersGitHub();
+}, []);
+
+```
+
+Basicamente, o `useQuery` cria as variáveis de `state` que vamos usar para receber os dados da requisição, controlar o *loading* e receber algum erro caso tenha, respectivamente
+o `data`, o `isLoading`, e o `error`.
+
+Então, podemos usar essas três variáveis na renderização.
+
+```javascript
+{
+  isLoading ? <Loading />                   : 
+  error     ? <Error />                     : 
+  result    ? <Users data={result.data} />  : 
+  null
+}
+```
+
+A boa organização do layout e componentes nos permite escrever menos código ao lidar com essas situações. No código acima apenas verificamos se existe o `isLoading`,
+o `error` e o `result`. Renomeei o `data` na desestruturação porquê o `useQuery` retorna um `data` e o axios também, então para não confundir fiz dessa forma.  
+Formatei o código acima separado em linhas para ficar mais fácil a visualização aqui no artigo, mas você pode formatar como você desejar.
+
+Como o `result.data` está sendo passado para uma propriedade do componente `Users`, então você pode usar agora a propriedade `data` nesse componente para 
+fazer o `map` e mostrar o resultado na tela.
+
+## LINKS ÚTEIS 👩‍💻
+
+* [Documentação do Axios](https://github.com/axios/axios)
+* [Documentação do React Query](https://github.com/tannerlinsley/react-query)
