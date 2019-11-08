@@ -1,0 +1,13 @@
+- name: Diego Souza
+  bio: |
+    Written by You. This is where your author bio lives. Share your work, your
+    joys and of course, your Twitter handle.
+  avatar: ./avatars/diego-souza.jpg
+  featured: true
+  social:
+    - name: github
+      url: https://github.com/deesouza
+    - name: instagram
+      url: https://instagram.com/_deecode
+    - name: linkedin
+      url: https://linkedin.com.br/in/deesouza
