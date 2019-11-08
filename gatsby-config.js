@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `_DeeCode`,
-    name: `_DeeCode`,
+    title: `_DeeCode - Undefined Blog`,
+    name: `Diego Souza`,
     siteUrl: `https://novela.narative.co`,
-    description: `This is my description that will be used in the meta tags and important for search results`,
+    description: `Dicas úteis de programação em Node, React e React Native. Quase tudo sobre o ecossistema JavaScript.`,
     hero: {
-      heading: `Welcome to Novela, the simplest way to start publishing with Gatsby.`,
+      heading: `Undefined - Artigos Sobre Programação`,
       maxWidth: 652,
     },
     social: [
