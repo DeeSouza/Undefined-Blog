@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `_DeeCode - Undefined Blog`,
+    title: `Home | 👨‍💻 Diego Souza - Frontend e Backend Developer`,
     name: `Diego Souza`,
     siteUrl: `https://novela.narative.co`,
     description: `Dicas úteis de programação em Node, React e React Native. Quase tudo sobre o ecossistema JavaScript.`,
     hero: {
-      heading: `Undefined; Backend & Frontend`,
+      heading: `Dicas de Frontend e Backend`,
       maxWidth: 852,
     },
     social: [
